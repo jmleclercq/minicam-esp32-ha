@@ -1,13 +1,13 @@
 # Wiring / Notes
 
-## Caméra
-Sur **XIAO ESP32S3 Sense**, la caméra est sur la carte/extension Sense (OV2640 ou OV3660 selon les séries).
+## Camera
+On the **XIAO ESP32S3 Sense**, the camera sits on the Sense expansion board (OV2640 or OV3660 depending on the batch).
 
-Les pins de la config `esp32_camera` du YAML sont basées sur l'exemple Seeed.
+The `esp32_camera` pin mapping in the YAML is based on Seeed's reference example.
 
-## Boutons
-- **BOOT** : utile pour forcer le mode bootloader si besoin
-- **RESET** : redémarrage
+## Buttons
+- **BOOT**: useful to force bootloader mode if needed
+- **RESET**: reboots the device
 
-## Antenne
-Le XIAO a un connecteur U.FL pour améliorer la portée Wi‑Fi/BT si tu as l’antenne.
+## Antenna
+The XIAO has a U.FL connector to improve Wi-Fi/BT range if you have the external antenna.

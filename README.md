@@ -32,23 +32,46 @@ Turn this into a **Home Assistant control screen**:
 - Core controls (lights, scenes, thermostats, Sonos)
 - Reliability + enclosure + clean power
 
-See `ROADMAP.md`.
+See [`ROADMAP.md`](ROADMAP.md).
 
 ---
 
 ## Quick install
 
-1) Add secrets (or reuse your existing `secrets.yaml`):
+1) Add secrets (or reuse your existing `secrets.yaml`), based on [`esphome/secrets.yaml.example`](esphome/secrets.yaml.example):
 - `wifi_ssid`, `wifi_password`, `api_encryption_key`, `ota_password`
 
 2) Flash from ESPHome Builder/Dashboard:
-- Use the config in `esphome/minicam-esp32.yaml`
+- Use the config in [`esphome/minicam-esp32.yaml`](esphome/minicam-esp32.yaml)
 - Install via USB for first flash, then OTA
 
 3) Verify:
 - Stream: `http://<IP>:8080`
 - Snapshot: `http://<IP>:8081`
 
+Full step-by-step guide: [`docs/INSTALL.md`](docs/INSTALL.md)
+
 ---
 
 ## Repository structure
+
+```
+├── LICENSE
+├── README.md
+├── ROADMAP.md
+├── docs/
+│   ├── INSTALL.md            # Step-by-step flashing & first setup
+│   ├── HOME_ASSISTANT.md     # Dashboard cards & HA integration tips
+│   ├── WIRING.md             # Camera, buttons, antenna notes
+│   └── TROUBLESHOOTING.md    # Common issues and fixes
+└── esphome/
+    ├── minicam-esp32.yaml    # Main ESPHome firmware config
+    └── secrets.yaml.example  # Template for secrets.yaml (not committed)
+```
+
+## Documentation
+
+- [Install guide](docs/INSTALL.md)
+- [Home Assistant integration](docs/HOME_ASSISTANT.md)
+- [Wiring notes](docs/WIRING.md)
+- [Troubleshooting](docs/TROUBLESHOOTING.md)

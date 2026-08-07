@@ -1,12 +1,12 @@
-# Dépannage (première base)
+# Troubleshooting (first basics)
 
-## La caméra ne démarre pas (ESP_FAIL)
-1. Vérifier que la Sense (caméra) est bien enfichée.
-2. Confirmer l'activation PSRAM (voir `platformio_options`).
-3. Baisser la résolution (ex: `640x480`) pour tester.
-4. Mettre à jour ESPHome si besoin (ou tester Arduino vs ESP-IDF).
-5. Regarder les logs : `esphome logs ...`
+## Camera doesn't start (ESP_FAIL)
+1. Check that the Sense (camera) board is properly seated.
+2. Confirm PSRAM is enabled (see `psram:` in the YAML).
+3. Lower the resolution (e.g. `640x480`) to test.
+4. Update ESPHome if needed (or try Arduino vs ESP-IDF framework).
+5. Check the logs: `esphome logs ...`
 
-## Pas de découverte HA
-- Vérifier que HA et le device sont sur le même réseau.
-- Vérifier `api:` et que le firewall ne bloque pas.
+## Device not discovered by HA
+- Make sure HA and the device are on the same network.
+- Check the `api:` section and that your firewall isn't blocking it.
