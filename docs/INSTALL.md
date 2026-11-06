@@ -13,6 +13,7 @@ This guide installs the **MiniCam ESP32** firmware using **ESPHome Builder / Das
   - `wifi_password`
   - `api_encryption_key`
   - `ota_password`
+  - `ap_password` (fallback access point, 8 characters minimum)
 
 ## 1) Wire & power (XIAO ESP32S3 Sense)
 - Plug the XIAO ESP32S3 Sense via **USB-C data cable**.
@@ -22,8 +23,8 @@ This guide installs the **MiniCam ESP32** firmware using **ESPHome Builder / Das
 - Open **ESPHome** in Home Assistant.
 - Create a new device or select your existing one (e.g. `minicam-esp32`).
 
-## 3) Paste the firmware YAML
-Copy the content of `esphome/minicam-esp32.yaml` into the device configuration.
+## 3) Copy the firmware YAML
+Copy **both** `esphome/common.yaml` and the board file (`esphome/minicam-esp32.yaml`) into your ESPHome config folder (`/config/esphome/` on Home Assistant). The board file includes `common.yaml` through `packages:`, so they must sit in the same folder.
 
 ## 4) First flash (USB)
 - Click **INSTALL**

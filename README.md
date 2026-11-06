@@ -18,13 +18,14 @@ The first validated milestone is a **fully working camera**, supported on two bo
 
 ## What you get (current status)
 
-- ✅ Working ESPHome firmware (Wi-Fi, API encryption, OTA)
-- ✅ PSRAM enabled (required for camera)
-- ✅ Camera initialized and stable
+- ✅ Working ESPHome firmware (Wi‑Fi, API encryption, OTA)
+- ✅ Shared config in [`esphome/common.yaml`](esphome/common.yaml), board-specific files stay small
+- ✅ Camera initialized and stable (PSRAM enabled)
 - ✅ HTTP endpoints:
   - Stream: `http://<IP>:8080`
   - Snapshot: `http://<IP>:8081`
 - ✅ Home Assistant integration via ESPHome API
+- ESP32-CAM defaults to **320x240** (~3–4 fps over a weak Wi‑Fi link); XIAO ESP32S3 Sense uses 640x480
 
 ---
 
@@ -44,10 +45,10 @@ See [`ROADMAP.md`](ROADMAP.md).
 ## Quick install
 
 1) Add secrets (or reuse your existing `secrets.yaml`), based on [`esphome/secrets.yaml.example`](esphome/secrets.yaml.example):
-- `wifi_ssid`, `wifi_password`, `api_encryption_key`, `ota_password`
+- `wifi_ssid`, `wifi_password`, `api_encryption_key`, `ota_password`, `ap_password`
 
 2) Flash from ESPHome Builder/Dashboard:
-- Use the config matching your board (`minicam-esp32.yaml` for XIAO, `minicam-esp32cam.yaml` for ESP32-CAM)
+- Use the config matching your board (`minicam-esp32.yaml` for XIAO, `minicam-esp32cam.yaml` for ESP32-CAM). Both include `common.yaml`, so copy it next to them
 - Install via USB (ESP32-CAM: programming base or USB-UART adapter) for first flash, then OTA
 
 3) Verify:
@@ -70,8 +71,9 @@ Full step-by-step guide: [`docs/INSTALL.md`](docs/INSTALL.md)
 │   ├── WIRING.md             # Camera, buttons, antenna, ESP32-CAM wiring (programming base or USB-UART adapter)
 │   └── TROUBLESHOOTING.md    # Common issues and fixes
 └── esphome/
-    ├── minicam-esp32.yaml    # ESPHome config — XIAO ESP32S3 Sense
-    ├── minicam-esp32cam.yaml # ESPHome config — AI-Thinker ESP32-CAM
+    ├── common.yaml           # Shared config (Wi-Fi, API, OTA, sensors, HTTP endpoints)
+    ├── minicam-esp32.yaml    # ESPHome config — XIAO ESP32S3 Sense (camera + board)
+    ├── minicam-esp32cam.yaml # ESPHome config — AI-Thinker ESP32-CAM (camera + board)
     └── secrets.yaml.example  # Template for secrets.yaml (not committed)
 ```
 

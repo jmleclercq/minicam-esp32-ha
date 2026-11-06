@@ -1,10 +1,12 @@
+# XIAO ESP32S3 Sense (OV2640/OV3660 on the Sense expansion board)
+# Shared settings (Wi-Fi, API, OTA, sensors, HTTP endpoints) live in common.yaml.
+
 substitutions:
   devicename: minicam-esp32
   friendly_name: MiniCam ESP32
 
-esphome:
-  name: ${devicename}
-  friendly_name: ${friendly_name}
+packages:
+  common: !include common.yaml
 
 esp32:
   board: esp32-s3-devkitc-1
@@ -16,26 +18,6 @@ esp32:
 psram:
   mode: octal
   speed: 80MHz
-
-logger:
-
-api:
-  encryption:
-    key: !secret api_encryption_key
-
-ota:
-  - platform: esphome
-    password: !secret ota_password
-
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-
-  ap:
-    ssid: "${friendly_name} Fallback"
-    password: "12345678"
-
-captive_portal:
 
 # Camera (XIAO ESP32S3 Sense)
 esp32_camera:
@@ -56,27 +38,3 @@ esp32_camera:
   resolution: 640x480
   jpeg_quality: 12
   max_framerate: 10 fps
-
-esp32_camera_web_server:
-  - port: 8080
-    mode: stream
-  - port: 8081
-    mode: snapshot
-
-# Nice-to-have diagnostics
-sensor:
-  - platform: wifi_signal
-    name: "${friendly_name} WiFi Signal"
-    update_interval: 60s
-  - platform: uptime
-    name: "${friendly_name} Uptime"
-
-text_sensor:
-  - platform: wifi_info
-    ip_address:
-      name: "${friendly_name} IP"
-
-# Optional (recommended): quick recovery button in HA
-button:
-  - platform: restart
-    name: "${friendly_name} Restart"

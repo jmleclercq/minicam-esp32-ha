@@ -4,16 +4,33 @@ Once the device is added through the ESPHome integration, you can display the ca
 
 ## Option A — Use the ESPHome camera entity (recommended)
 1. Edit your dashboard
-2. **Add card**
-3. Choose **Camera** (or **Picture Entity**)
-4. Select the camera entity exposed by ESPHome (entity name depends on your setup)
+2. **Add card** -> **Picture glance** (or **Picture Entity**)
+3. Select the camera entity exposed by ESPHome (entity name depends on your setup)
 
-## Option B — Use the HTTP stream for quick debugging
-If you prefer to display the HTTP stream directly:
+For a **live** view, set `camera_view: live` (the default `auto` only shows a refreshed still image):
+
+```yaml
+type: picture-glance
+camera_view: live
+fit_mode: cover
+camera_image: camera.<your_camera_entity>
+entities:
+  - entity: camera.<your_camera_entity>
+```
+
+> **"Idle" state is normal.** An ESPHome camera entity shows *Idle* (*Inactif*) until someone opens the card; Home Assistant then asks the device to start streaming. The first image can take a few seconds on a weak Wi‑Fi link.
+
+## Option B — Generic Camera (bypass the ESPHome API)
+If the entity does not display, or you want a stream independent of the API:
+**Settings -> Devices & Services -> Add integration -> Generic Camera**
+- Still image URL: `http://<IP>:8081/`
+- Stream source URL: `http://<IP>:8080/`
+
+## Option C — Use the HTTP stream for quick debugging
 - Stream URL: `http://<IP>:8080`
 - Snapshot URL: `http://<IP>:8081`
 
-Add a **Webpage** card and paste the stream URL.
+Add a **Webpage** card and paste the stream URL. Keep only one client on the stream at a time: the ESP32 handles very few simultaneous connections.
 
 ## Practical control entities to add
 If you enabled the `restart` button (see YAML):
