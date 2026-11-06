@@ -2,7 +2,8 @@
 
 ![ESPHome](https://img.shields.io/badge/ESPHome-Compatible-000000?logo=esphome)
 ![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Compatible-41BDF5?logo=homeassistant&logoColor=white)
-![ESP32-S3](https://img.shields.io/badge/ESP32-S3-blue)
+![ESP32](https://img.shields.io/badge/ESP32%20%7C%20ESP32--S3-blue)
+![CI](https://github.com/jmleclercq/minicam-esp32-ha/actions/workflows/validate.yml/badge.svg)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
