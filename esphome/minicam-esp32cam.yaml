@@ -6,7 +6,7 @@ esphome:
   name: ${devicename}
   friendly_name: ${friendly_name}
 
-# AI-Thinker ESP32-CAM (ESP32-S, OV2640), flashed through an external FT232 UART adapter
+# AI-Thinker ESP32-CAM (ESP32-S, OV2640), flashed via a programming base board or a USB-UART adapter
 esp32:
   board: esp32dev
   framework:

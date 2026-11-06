@@ -12,7 +12,7 @@ The first validated milestone is a **fully working camera**, supported on two bo
 | Board | Config | Flashing |
 |---|---|---|
 | Seeed Studio **XIAO ESP32S3 Sense** | [`esphome/minicam-esp32.yaml`](esphome/minicam-esp32.yaml) | Native USB-C |
-| **AI-Thinker ESP32-CAM** (ESP32-S, OV2640) | [`esphome/minicam-esp32cam.yaml`](esphome/minicam-esp32cam.yaml) | External FT232 USB-UART adapter |
+| **AI-Thinker ESP32-CAM** (ESP32-S, OV2640) | [`esphome/minicam-esp32cam.yaml`](esphome/minicam-esp32cam.yaml) | Programming base board (ESP32-CAM-MB) or external USB-UART adapter |
 
 ---
 
@@ -48,7 +48,7 @@ See [`ROADMAP.md`](ROADMAP.md).
 
 2) Flash from ESPHome Builder/Dashboard:
 - Use the config matching your board (`minicam-esp32.yaml` for XIAO, `minicam-esp32cam.yaml` for ESP32-CAM)
-- Install via USB (or FT232 for the ESP32-CAM) for first flash, then OTA
+- Install via USB (ESP32-CAM: programming base or USB-UART adapter) for first flash, then OTA
 
 3) Verify:
 - Stream: `http://<IP>:8080`
@@ -67,7 +67,7 @@ Full step-by-step guide: [`docs/INSTALL.md`](docs/INSTALL.md)
 ├── docs/
 │   ├── INSTALL.md            # Step-by-step flashing & first setup (both boards)
 │   ├── HOME_ASSISTANT.md     # Dashboard cards & HA integration tips
-│   ├── WIRING.md             # Camera, buttons, antenna, ESP32-CAM + FT232 wiring
+│   ├── WIRING.md             # Camera, buttons, antenna, ESP32-CAM wiring (programming base or USB-UART adapter)
 │   └── TROUBLESHOOTING.md    # Common issues and fixes
 └── esphome/
     ├── minicam-esp32.yaml    # ESPHome config — XIAO ESP32S3 Sense

@@ -11,7 +11,7 @@
 - Make sure HA and the device are on the same network.
 - Check the `api:` section and that your firewall isn't blocking it.
 
-## ESP32-CAM (AI-Thinker) + FT232
+## ESP32-CAM (AI-Thinker)
 
 ### `Permission denied: /dev/ttyUSB0`
 Add your user to the `dialout` group, then log out and back in:
@@ -20,13 +20,18 @@ sudo usermod -aG dialout $USER
 ```
 
 ### `Failed to connect to ESP32: Wrong boot mode` / `Timed out waiting for packet header`
-- Connect **GPIO0 to GND** *before* powering/resetting, then press RESET.
-- Check TX/RX are crossed (FT232 TX -> U0R, FT232 RX -> U0T).
-- Power from **5 V** (not 3.3 V): the ESP32-CAM draws too much for weak 3.3 V supplies.
+- **Programming base board**: re-seat the ESP32-CAM on the base, try another USB cable/port.
+- **Bare board + USB-UART adapter**: connect **GPIO0 to GND** *before* powering/resetting, then press RESET; check TX/RX are crossed (adapter TX -> U0R, adapter RX -> U0T); power from **5 V**.
 
 ### Boot loop / brownout after flashing
-- Remove the GPIO0-GND jumper, then press RESET.
-- Use a good 5 V supply (USB hub or powered port); weak power causes brownouts when Wi-Fi + camera start.
+- Bare board: remove the GPIO0-GND jumper, then press RESET.
+- Use a good 5 V supply (powered USB port); weak power causes brownouts when Wi-Fi + camera start.
+
+### Slow stream / high latency
+The ESP32-CAM is sensitive to Wi-Fi signal. Check the `WiFi Signal` sensor, move the board closer to the access point, or use an external antenna (change the resistor on the board to select the U.FL connector).
+
+### Image upside down
+Set `vertical_flip` / `horizontal_mirror` under `esp32_camera:` in the YAML.
 
 ### `psram` / boot error on ESP32-CAM
 Do not use `mode: octal` on the ESP32-CAM: it has quad PSRAM. Keep a plain `psram:` block.

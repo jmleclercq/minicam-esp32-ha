@@ -48,11 +48,13 @@ Home Assistant should auto-discover the device via ESPHome:
 ## ESP32-CAM (AI-Thinker) variant
 Steps 2, 3, 5, 6 are identical, using `esphome/minicam-esp32cam.yaml`. Differences for the first flash:
 
-1. Wire the **FT232** to the ESP32-CAM and put it in flash mode (GPIO0 -> GND), see [`WIRING.md`](WIRING.md).
-2. Make sure your user is in the `dialout` group (`sudo usermod -aG dialout $USER`, then re-login).
+1. **With a programming base board (ESP32-CAM-MB)**: plug the ESP32-CAM onto the base and the base into your computer. Nothing else to wire, no jumper.
+   **With a bare ESP32-CAM + USB-UART adapter**: wire it and enter flash mode (GPIO0 -> GND), see [`WIRING.md`](WIRING.md).
+2. Make sure your user can access the serial port: `sudo usermod -aG dialout $USER`, then re-login.
 3. In ESPHome choose **Plug into this computer** and select `/dev/ttyUSB0`
    (or from a terminal: `esphome run esphome/minicam-esp32cam.yaml --device /dev/ttyUSB0`).
-4. When flashing is done, remove the GPIO0-GND wire and press RESET.
+4. Only with the bare-board method: remove the GPIO0-GND wire and press RESET.
+5. Add the device in Home Assistant (**Settings -> Devices & Services -> ESPHome**) and enter the `api_encryption_key` from your `secrets.yaml`.
 
 ## Update via OTA (later)
 Once the device is on Wi‑Fi:

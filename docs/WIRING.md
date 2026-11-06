@@ -14,19 +14,25 @@ The `esp32_camera` pin mapping in the YAML is based on Seeed's reference example
 ### Antenna
 The XIAO has a U.FL connector to improve Wi-Fi/BT range if you have the external antenna.
 
-## AI-Thinker ESP32-CAM (ESP32-S) + FT232 programmer
+## AI-Thinker ESP32-CAM (ESP32-S)
 
-The ESP32-CAM has **no native USB**: flash it with a USB-UART adapter (FT232R, `0403:6001`, appears as `/dev/ttyUSB0`).
+The ESP32-CAM has **no native USB**. Two ways to flash it:
 
-### FT232 -> ESP32-CAM
-| FT232 | ESP32-CAM |
+### Option A — Programming base board (ESP32-CAM-MB, recommended)
+Plug the ESP32-CAM onto the base board and connect the base to your computer with a USB cable.
+- **No wiring needed**: the base handles boot mode and reset automatically.
+- **No GPIO0-GND jumper needed.**
+- The serial port appears as `/dev/ttyUSB0` (validated with an FT232R-based base, `0403:6001`).
+
+### Option B — Bare ESP32-CAM + external USB-UART adapter (FT232 / CP2102 / CH340)
+| Adapter | ESP32-CAM |
 |---|---|
 | 5V (jumper set to 5V) | 5V |
 | GND | GND |
 | TX | U0R (GPIO3) |
 | RX | U0T (GPIO1) |
 
-### Flash mode
+Flash mode:
 1. Connect **GPIO0 to GND** (jumper wire).
 2. Press **RESET** (or re-plug power).
 3. Flash (`esphome run esphome/minicam-esp32cam.yaml`, select `/dev/ttyUSB0`).
