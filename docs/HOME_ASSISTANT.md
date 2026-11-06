@@ -21,4 +21,9 @@ If you enabled the `restart` button (see YAML):
 
 ## Networking notes
 - Make sure Home Assistant and the device are on the same LAN/VLAN.
-- mDNS name: `minicam-esp32.local` (may depend on your network).
+- mDNS names (may depend on your network):
+  - XIAO ESP32S3 Sense: `minicam-esp32.local`
+  - ESP32-CAM: `minicam-esp32cam.local`
+
+## ESP32-CAM flash LED
+The ESP32-CAM config exposes the on-board white LED as a **Light** entity (`MiniCam ESP32-CAM Flash`). It is very bright and gets hot: keep it off when not needed.

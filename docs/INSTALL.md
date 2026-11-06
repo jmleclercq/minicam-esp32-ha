@@ -1,6 +1,9 @@
-# Install (ESPHome Builder / Dashboard) — MiniCam ESP32 (XIAO ESP32S3 Sense)
+# Install (ESPHome Builder / Dashboard) — MiniCam ESP32
 
-This guide installs the **MiniCam ESP32** firmware on a **Seeed Studio XIAO ESP32S3 Sense** using **ESPHome Builder / Dashboard** (Home Assistant add-on).
+This guide installs the **MiniCam ESP32** firmware using **ESPHome Builder / Dashboard** (Home Assistant add-on) on one of two boards:
+
+- **Seeed Studio XIAO ESP32S3 Sense** -> `esphome/minicam-esp32.yaml`
+- **AI-Thinker ESP32-CAM** -> `esphome/minicam-esp32cam.yaml` (see the ESP32-CAM section below)
 
 ## Prerequisites
 - Home Assistant running
@@ -11,7 +14,7 @@ This guide installs the **MiniCam ESP32** firmware on a **Seeed Studio XIAO ESP3
   - `api_encryption_key`
   - `ota_password`
 
-## 1) Wire & power
+## 1) Wire & power (XIAO ESP32S3 Sense)
 - Plug the XIAO ESP32S3 Sense via **USB-C data cable**.
 - Keep the Sense expansion (camera) firmly connected.
 
@@ -41,6 +44,15 @@ Test in a browser:
 Home Assistant should auto-discover the device via ESPHome:
 - **Settings → Devices & Services → ESPHome**
 - Add the discovered device.
+
+## ESP32-CAM (AI-Thinker) variant
+Steps 2, 3, 5, 6 are identical, using `esphome/minicam-esp32cam.yaml`. Differences for the first flash:
+
+1. Wire the **FT232** to the ESP32-CAM and put it in flash mode (GPIO0 -> GND), see [`WIRING.md`](WIRING.md).
+2. Make sure your user is in the `dialout` group (`sudo usermod -aG dialout $USER`, then re-login).
+3. In ESPHome choose **Plug into this computer** and select `/dev/ttyUSB0`
+   (or from a terminal: `esphome run esphome/minicam-esp32cam.yaml --device /dev/ttyUSB0`).
+4. When flashing is done, remove the GPIO0-GND wire and press RESET.
 
 ## Update via OTA (later)
 Once the device is on Wi‑Fi:

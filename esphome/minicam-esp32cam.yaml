@@ -1,0 +1,93 @@
+substitutions:
+  devicename: minicam-esp32cam
+  friendly_name: MiniCam ESP32-CAM
+
+esphome:
+  name: ${devicename}
+  friendly_name: ${friendly_name}
+
+# AI-Thinker ESP32-CAM (ESP32-S, OV2640), flashed through an external FT232 UART adapter
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Quad PSRAM (default mode) - do NOT use "octal" here, it is for ESP32-S3 only
+psram:
+
+logger:
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  ap:
+    ssid: "${friendly_name} Fallback"
+    password: "12345678"
+
+captive_portal:
+
+# Camera (AI-Thinker ESP32-CAM pinout)
+esp32_camera:
+  id: cam
+  name: "${friendly_name}"
+  external_clock:
+    pin: GPIO0
+    frequency: 20MHz
+  i2c_pins:
+    sda: GPIO26
+    scl: GPIO27
+  data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+  vsync_pin: GPIO25
+  href_pin: GPIO23
+  pixel_clock_pin: GPIO22
+  power_down_pin: GPIO32
+
+  # Stable baseline
+  resolution: 640x480
+  jpeg_quality: 12
+  max_framerate: 10 fps
+
+esp32_camera_web_server:
+  - port: 8080
+    mode: stream
+  - port: 8081
+    mode: snapshot
+
+# On-board white flash LED (GPIO4). Very bright: keep it off unless needed.
+output:
+  - platform: ledc
+    pin: GPIO4
+    id: flash_output
+
+light:
+  - platform: monochromatic
+    name: "${friendly_name} Flash"
+    output: flash_output
+    restore_mode: ALWAYS_OFF
+
+# Nice-to-have diagnostics
+sensor:
+  - platform: wifi_signal
+    name: "${friendly_name} WiFi Signal"
+    update_interval: 60s
+  - platform: uptime
+    name: "${friendly_name} Uptime"
+
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: "${friendly_name} IP"
+
+# Optional (recommended): quick recovery button in HA
+button:
+  - platform: restart
+    name: "${friendly_name} Restart"

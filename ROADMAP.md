@@ -7,6 +7,7 @@ This project is a building block for a **Home Assistant control screen**. The ca
 - [x] Wi‑Fi + API + OTA
 - [x] Camera working (PSRAM enabled)
 - [x] HTTP stream + snapshot endpoints
+- [x] Second board supported: AI-Thinker ESP32-CAM (config added, to be validated on hardware)
 
 ## Milestone 2 — HA control screen (UI/UX)
 - [ ] Define the screen UX (pages, navigation, main actions)
