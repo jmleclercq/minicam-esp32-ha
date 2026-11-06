@@ -1,0 +1,38 @@
+name: Validate ESPHome configs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [minicam-esp32.yaml, minicam-esp32cam.yaml]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ESPHome
+        run: pip install esphome
+
+      - name: Create dummy secrets
+        working-directory: esphome
+        run: |
+          cat > secrets.yaml <<EOS
+          wifi_ssid: "ci"
+          wifi_password: "ci-password"
+          api_encryption_key: "$(python3 -c 'import os,base64;print(base64.b64encode(os.urandom(32)).decode())')"
+          ota_password: "ci"
+          ap_password: "ci-ap-password"
+          EOS
+
+      - name: Validate ${{ matrix.config }}
+        working-directory: esphome
+        run: esphome config ${{ matrix.config }}

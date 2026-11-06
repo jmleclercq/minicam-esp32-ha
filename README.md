@@ -6,8 +6,8 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
-This repository is a **starter + working reference** for a Home Assistant **control screen project** built with ESPHome.
-The first validated milestone is a **fully working camera**, supported on two boards:
+This repository is a **starter + working reference** for ESPHome-based **cameras for Home Assistant**.
+It provides a **fully working camera**, supported on two boards:
 
 | Board | Config | Flashing |
 |---|---|---|
@@ -31,12 +31,7 @@ The first validated milestone is a **fully working camera**, supported on two bo
 
 ## Next goal
 
-Turn this into a **Home Assistant control screen**:
-- UI/UX definition
-- Display selection + drivers
-- ESPHome display stack (LVGL or display component)
-- Core controls (lights, scenes, thermostats, Sonos)
-- Reliability + enclosure + clean power
+Reliability, enclosure and clean power for the cameras.
 
 See [`ROADMAP.md`](ROADMAP.md).
 
