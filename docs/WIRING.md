@@ -35,10 +35,10 @@ Plug the ESP32-CAM onto the base board and connect the base to your computer wit
 Flash mode:
 1. Connect **GPIO0 to GND** (jumper wire).
 2. Press **RESET** (or re-plug power).
-3. Flash (`esphome run esphome/minicam-esp32cam.yaml`, select `/dev/ttyUSB0`).
+3. Flash (`esphome run esphome/ai-thinker-esp32-cam.yaml`, select `/dev/ttyUSB0`).
 4. Remove the GPIO0-GND wire, press **RESET** to boot the firmware.
 
-### Camera pinout used in `minicam-esp32cam.yaml`
+### Camera pinout used in `ai-thinker-esp32-cam.yaml`
 | Signal | GPIO |
 |---|---|
 | XCLK | 0 |

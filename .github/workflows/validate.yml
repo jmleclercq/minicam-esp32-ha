@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        config: [minicam-esp32.yaml, minicam-esp32cam.yaml]
+        config: [seeed-xiao-esp32s3-sense.yaml, ai-thinker-esp32-cam.yaml]
     steps:
       - uses: actions/checkout@v4
 

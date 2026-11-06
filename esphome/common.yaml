@@ -1,5 +1,5 @@
 # Shared configuration for all MiniCam boards.
-# Included by minicam-esp32.yaml and minicam-esp32cam.yaml via `packages:`.
+# Included by seeed-xiao-esp32s3-sense.yaml and ai-thinker-esp32-cam.yaml via `packages:`.
 # Requires the substitutions `devicename` and `friendly_name` (defined in each board file).
 
 esphome:

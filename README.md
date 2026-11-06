@@ -12,8 +12,8 @@ It provides a **fully working camera**, supported on two boards:
 
 | Board | Config | Flashing |
 |---|---|---|
-| Seeed Studio **XIAO ESP32S3 Sense** | [`esphome/minicam-esp32.yaml`](esphome/minicam-esp32.yaml) | Native USB-C |
-| **AI-Thinker ESP32-CAM** (ESP32-S, OV2640) | [`esphome/minicam-esp32cam.yaml`](esphome/minicam-esp32cam.yaml) | Programming base board (ESP32-CAM-MB) or external USB-UART adapter |
+| Seeed Studio **XIAO ESP32S3 Sense** | [`esphome/seeed-xiao-esp32s3-sense.yaml`](esphome/seeed-xiao-esp32s3-sense.yaml) | Native USB-C |
+| **AI-Thinker ESP32-CAM** (ESP32-S, OV2640) | [`esphome/ai-thinker-esp32-cam.yaml`](esphome/ai-thinker-esp32-cam.yaml) | Programming base board (ESP32-CAM-MB) or external USB-UART adapter |
 
 ---
 
@@ -44,7 +44,7 @@ See [`ROADMAP.md`](ROADMAP.md).
 - `wifi_ssid`, `wifi_password`, `api_encryption_key`, `ota_password`, `ap_password`
 
 2) Flash from ESPHome Builder/Dashboard:
-- Use the config matching your board (`minicam-esp32.yaml` for XIAO, `minicam-esp32cam.yaml` for ESP32-CAM). Both include `common.yaml`, so copy it next to them
+- Use the config matching your board (`seeed-xiao-esp32s3-sense.yaml` for XIAO, `ai-thinker-esp32-cam.yaml` for ESP32-CAM). Both include `common.yaml`, so copy it next to them
 - Install via USB (ESP32-CAM: programming base or USB-UART adapter) for first flash, then OTA
 
 3) Verify:
@@ -67,10 +67,10 @@ Full step-by-step guide: [`docs/INSTALL.md`](docs/INSTALL.md)
 │   ├── WIRING.md             # Camera, buttons, antenna, ESP32-CAM wiring (programming base or USB-UART adapter)
 │   └── TROUBLESHOOTING.md    # Common issues and fixes
 └── esphome/
-    ├── common.yaml           # Shared config (Wi-Fi, API, OTA, sensors, HTTP endpoints)
-    ├── minicam-esp32.yaml    # ESPHome config — XIAO ESP32S3 Sense (camera + board)
-    ├── minicam-esp32cam.yaml # ESPHome config — AI-Thinker ESP32-CAM (camera + board)
-    └── secrets.yaml.example  # Template for secrets.yaml (not committed)
+    ├── common.yaml                    # Shared config (Wi-Fi, API, OTA, sensors, HTTP endpoints)
+    ├── seeed-xiao-esp32s3-sense.yaml  # ESPHome config — XIAO ESP32S3 Sense (camera + board)
+    ├── ai-thinker-esp32-cam.yaml      # ESPHome config — AI-Thinker ESP32-CAM (camera + board)
+    └── secrets.yaml.example           # Template for secrets.yaml (not committed)
 ```
 
 ## Documentation

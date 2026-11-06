@@ -2,8 +2,8 @@
 
 This guide installs the **MiniCam ESP32** firmware using **ESPHome Builder / Dashboard** (Home Assistant add-on) on one of two boards:
 
-- **Seeed Studio XIAO ESP32S3 Sense** -> `esphome/minicam-esp32.yaml`
-- **AI-Thinker ESP32-CAM** -> `esphome/minicam-esp32cam.yaml` (see the ESP32-CAM section below)
+- **Seeed Studio XIAO ESP32S3 Sense** -> `esphome/seeed-xiao-esp32s3-sense.yaml`
+- **AI-Thinker ESP32-CAM** -> `esphome/ai-thinker-esp32-cam.yaml` (see the ESP32-CAM section below)
 
 ## Prerequisites
 - Home Assistant running
@@ -24,7 +24,7 @@ This guide installs the **MiniCam ESP32** firmware using **ESPHome Builder / Das
 - Create a new device or select your existing one (e.g. `minicam-esp32`).
 
 ## 3) Copy the firmware YAML
-Copy **both** `esphome/common.yaml` and the board file (`esphome/minicam-esp32.yaml`) into your ESPHome config folder (`/config/esphome/` on Home Assistant). The board file includes `common.yaml` through `packages:`, so they must sit in the same folder.
+Copy **both** `esphome/common.yaml` and the board file (`esphome/seeed-xiao-esp32s3-sense.yaml`) into your ESPHome config folder (`/config/esphome/` on Home Assistant). The board file includes `common.yaml` through `packages:`, so they must sit in the same folder.
 
 ## 4) First flash (USB)
 - Click **INSTALL**
@@ -47,13 +47,13 @@ Home Assistant should auto-discover the device via ESPHome:
 - Add the discovered device.
 
 ## ESP32-CAM (AI-Thinker) variant
-Steps 2, 3, 5, 6 are identical, using `esphome/minicam-esp32cam.yaml`. Differences for the first flash:
+Steps 2, 3, 5, 6 are identical, using `esphome/ai-thinker-esp32-cam.yaml`. Differences for the first flash:
 
 1. **With a programming base board (ESP32-CAM-MB)**: plug the ESP32-CAM onto the base and the base into your computer. Nothing else to wire, no jumper.
    **With a bare ESP32-CAM + USB-UART adapter**: wire it and enter flash mode (GPIO0 -> GND), see [`WIRING.md`](WIRING.md).
 2. Make sure your user can access the serial port: `sudo usermod -aG dialout $USER`, then re-login.
 3. In ESPHome choose **Plug into this computer** and select `/dev/ttyUSB0`
-   (or from a terminal: `esphome run esphome/minicam-esp32cam.yaml --device /dev/ttyUSB0`).
+   (or from a terminal: `esphome run esphome/ai-thinker-esp32-cam.yaml --device /dev/ttyUSB0`).
 4. Only with the bare-board method: remove the GPIO0-GND wire and press RESET.
 5. Add the device in Home Assistant (**Settings -> Devices & Services -> ESPHome**) and enter the `api_encryption_key` from your `secrets.yaml`.
 
